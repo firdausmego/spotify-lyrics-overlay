@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:">
+  <title>Lyrics Overlay</title>
+  <link rel="stylesheet" href="overlay.css">
+</head>
+<body>
+  <div id="panel" class="panel">
+    <div class="lyrics">
+      <div id="current" class="current"></div>
+      <div id="next" class="next"></div>
+    </div>
+    <div class="bar">
+      <span class="grip" title="Drag to move">⠿</span>
+      <div class="track"><span id="title"></span><span id="artist"></span></div>
+      <button data-cmd="prev" title="Previous track">⏮</button>
+      <button data-cmd="playpause" title="Play / Pause">⏯</button>
+      <button data-cmd="next" title="Next track">⏭</button>
+      <span class="sep"></span>
+      <button data-font="-2" title="Smaller text">A−</button>
+      <button data-font="2" title="Larger text">A+</button>
+      <span class="sep"></span>
+      <button data-offset="-0.5" title="Lyrics are early (delay them)">−½s</button>
+      <span id="offset" class="offset" title="Lyrics offset for this track">0.0s</span>
+      <button data-offset="0.5" title="Lyrics are late (advance them)">+½s</button>
+    </div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>

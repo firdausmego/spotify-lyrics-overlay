@@ -1,0 +1,107 @@
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  user-select: none;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+body {
+  --fs: 34px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 6px;
+}
+
+/* Idle: text only. Hover: thin backdrop + controls. */
+.panel {
+  max-width: 100%;
+  min-width: 360px;
+  padding: 8px 22px 6px;
+  border-radius: 16px;
+  text-align: center;
+  background: transparent;
+  transition: background .2s;
+}
+body.hover .panel { background: rgba(10, 10, 12, .38); }
+
+.lyrics { min-height: calc(var(--fs) * 1.3); }
+
+.current, .next {
+  color: #fff;
+  font-weight: 800;
+  line-height: 1.25;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .85), 0 0 10px rgba(0, 0, 0, .45);
+  overflow-wrap: anywhere;
+}
+.current { font-size: var(--fs); }
+.next {
+  margin-top: .25em;
+  font-size: calc(var(--fs) * .6);
+  font-weight: 700;
+  color: rgba(255, 255, 255, .7);
+}
+.current.status { font-size: calc(var(--fs) * .5); font-weight: 600; color: rgba(255, 255, 255, .85); }
+.current.faded { opacity: 0; transition: opacity 1s; }
+body.hover .current.faded { opacity: 1; }
+
+.swap { animation: rise .35s ease-out; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(.25em); }
+  to { opacity: 1; transform: none; }
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  margin-top: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+body.hover .bar { opacity: 1; pointer-events: auto; }
+
+.bar button {
+  border: 0;
+  border-radius: 6px;
+  padding: 5px 7px;
+  background: transparent;
+  color: #fff;
+  font: 600 13px/1 inherit;
+  cursor: pointer;
+}
+.bar button:hover { background: rgba(255, 255, 255, .15); }
+
+.grip {
+  -webkit-app-region: drag;
+  cursor: move;
+  padding: 2px 6px;
+  color: rgba(255, 255, 255, .7);
+  font-size: 16px;
+}
+
+.track {
+  display: flex;
+  flex-direction: column;
+  max-width: 220px;
+  margin: 0 8px 0 2px;
+  text-align: left;
+  line-height: 1.2;
+}
+.track span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#title { color: #fff; font-size: 12px; font-weight: 700; }
+#artist { color: rgba(255, 255, 255, .65); font-size: 11px; }
+
+.sep { width: 1px; height: 16px; margin: 0 4px; background: rgba(255, 255, 255, .2); }
+.offset {
+  min-width: 38px;
+  color: rgba(255, 255, 255, .7);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
